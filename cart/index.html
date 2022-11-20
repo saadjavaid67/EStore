@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tiger Mart</title>
+    <!-- STYLE SHEETS -->
+    <link rel="stylesheet" media=" screen and (min-width: 991px)" href="/css/main.css">
+    <link rel="stylesheet" media=" screen and (max-width: 990px)" href="/css/small-devices.css">
+    <!-- Awesome Font Icons CDN -->
+    <script src="https://kit.fontawesome.com/e96d07a92d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- DIM BG COVER -->
+    <div class="cover"></div>
+    <!-- START OF HEADER -->
+    <div class="header-wrapper">
+        <div class="header-content">
+            <span onclick="togglebtn()" class="side-nav-btn hide-on-large">
+                <div class="navbtn">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </span>
+            <div class="left-header-wrapper"><a class="header-btn btn" href=""><i class="far fa-question-circle"></i><span class="hide-on-small">help</span></a></div>
+            <div class="mid-header-wrapper">the tiger mart</div>
+            <div class="right-header-wrapper">
+                <a class="header-btn searchbtn btn" href="#"><i class="fas fa-search hide-on-large"></i></a>
+                <a class="header-btn btn" href="/cart/index.html"><i class="fas fa-shopping-cart"></i><span class="hide-on-small">cart</span><div class="cart-items"></div></a></div>
+        </div>
+    </div>
+    <!-- END OF HEADER -->
+    <!-- NAVIGATION MENU -->
+    <div class="nav-wrapper">
+        <ul class="nav-options">
+            <a href="index.html" class="nav-btn btn">
+                <li>home</li>
+            </a>
+            <a data-id="grocery" id="grocery" href="products.html?department=grocery" class="nav-btn btn">
+                <li data-id="grocery">grocery</li>
+            </a>
+            <ul class="grocery-flyout" data-flyout-id="grocery">
+                <li class="back">Back</li>
+                <a href="/products.html?department=grocery&catagory=air fresheners">
+                    <li>Air Fresheners</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=baby products">
+                    <li>Baby Products</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=biscuits">
+                    <li>Biscuits</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=chocolates">
+                    <li>Chocolates</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=cooking oil">
+                    <li>Cooking Oil</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=dairy products">
+                    <li>Dairy Products</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=dental care">
+                    <li>Dental Care</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=drinks">
+                    <li>Drinks</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=frozen food">
+                    <li>Forzen Food</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=household">
+                    <li>Household Products</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=jam and spreads">
+                    <li>Jam and Spreads</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=kitchen">
+                    <li>Kitchen Products</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=makeup">
+                    <li>Makeup</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=men">
+                    <li>Men Products</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=pasta and noodles">
+                    <li>Pasta and Noodles</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=pet food">
+                    <li>Pet Food</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=pulses and grains">
+                    <li>Pulses and Grains</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=rice and flour">
+                    <li>Rice and Flour</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=sauces">
+                    <li>Sauces</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=shampoo">
+                    <li>Shampoo</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=spices and masalas">
+                    <li>Spices and Masalas</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=skin care">
+                    <li>Skin Care</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=soaps and detergents">
+                    <li>Soaps and Detergents</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=tea and coffee">
+                    <li>Tea and Coffee</li>
+                </a>
+                <a href="/products.html?department=grocery&catagory=tissues">
+                    <li>Tissues</li>
+                </a>
+            </ul>
+
+            <a href="products.html?department=fruit" class="nav-btn btn">
+                <li>fruit</li>
+            </a>
+            <a href="products.html?department=vegetable" class="nav-btn btn">
+                <li>vegetable</li>
+            </a>
+        </ul>
+        <!-- SEARCH FILTER -->
+        <div class="search-wrapper">
+            <input type="text" class="searchbar" placeholder="search any product">
+            <ul class="searchedproducts"></ul>
+        </div>
+        <!-- END OF SEARCH FILTER -->
+    </div>
+    <!-- END OF NAVIGATION MENU -->
+    <!-- CART -->
+    <div class="cart-heading">
+        cart
+    </div>
+    <div id="cart-wrapper">
+        <div class="cart-container">
+            <!-- EMPTY CART CONTENT -->
+            <div class="empty-cart-content">
+                your cart is empty right now. Go shop now!
+                <div class="cart-grocery-btn-wrapper">
+                    <a class="btn cart-grocery-btn" href="/products.html?department=grocery">Shop Grocery</a>
+                </div>
+            </div>
+            <!-- END OF EMPTY CART CONTENT -->
+            <div id="cart-content" class="cart-content">
+
+            </div>
+            <div class="clear-cart">
+                <button class="clear-cart-btn cart-big-btn">clear cart</button>
+            </div>
+        </div>
+        <div class="summary-wrapper">
+            <div id="order-summary">Order Summary</div>
+            <div id="item-total" class="summary-content">
+                Item total:
+                <div class="amount-container light-font">RS: <span class="item-total light-font"></span></div>
+            </div>
+            <div id="discount" class="summary-content">
+                Discounts:
+                <div class="amount-container light-font">RS: 0</div>
+            </div>
+            <div id="shipping-charges" class="summary-content">
+                Shipping Charges:
+                <div class="amount-container light-font">FREE</div>
+            </div>
+            <div id="grand-total" class="summary-content">
+                grand total:
+                <div class="amount-container light-font">RS: <span class="cart-total light-font"></span></div>
+            </div>
+            <div class="cart-purchase">
+                <button class="cart-checkout-btn cart-big-btn">CHECKOUT</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- END OF CART -->
+    <!-- PRODUCT QUICK VIEW -->
+    <div class="product-quick-view-wrapper">
+        <div class="quickview-close-btn hide">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+        </div>
+        <div class="quick-view">
+            <div class="qv-product-description">
+                <div class="qv-product-title"></div>
+                <div class="price-id-wrapper">
+                    <div class="qv-product-price"></div>
+                    <div class="qv-product-path"></div>
+                    <div class="qv-product-id"></div>
+                </div>
+            </div>
+            <div class="quickview-product">
+                <div class="qvpimgs">
+                    <div class="product-images-wrapper"></div>
+                    <div class="selected-img">
+                        <img id="myimage" class="qv-product-main-img" src="" alt="">
+                    </div>
+                </div>
+                <div class="qvp-detail">
+
+                    <div class="qv-product-quantity">
+
+
+                    </div>
+
+                    <div class="cart-btn-wrapper">
+                    </div>
+                </div>
+                <div class="descripton-wrapper">
+                    <div class="description-header">
+                        details
+                    </div>
+                    <div class="qvp-description"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF PRODUCT QUICK VIEW -->
+    <!-- ALL SCRIPTS HERE -->
+    <script src="/js/cart.js"></script>
+    <script>
+        //SIDE NAV MENU
+        function navBtn() {
+            var x = document.querySelector('.navbtn')
+            x.classList.toggle("change");
+        }
+
+        function togglebtn() {
+            var x = document.querySelector(".nav-wrapper");
+
+            if (x.style.width <= "220px") {
+                this.navBtn();
+                cover.style.display = 'block';
+                x.style.width = "230px";
+            } else {
+                this.navBtn();
+                cover.style.display = 'none';
+                x.style.width = "0px";
+                groceryFlyout.style.width = '0px';
+                quickViewDOM.classList.remove('show-qv');
+            }
+        }
+        cover.addEventListener('click', () => {
+            if (navWrapper.style.width == "230px") {
+                this.navBtn();
+                cover.style.display = 'none';
+                navWrapper.style.width = "0px";
+                QVCloseBtn.classList.add('hide');
+                groceryFlyout.style.width = '0px';
+                quickViewDOM.classList.remove('show-qv');
+            }
+        });
+        navOptions.addEventListener('click', () => {
+            if (event.target.dataset.id === 'grocery' && navWrapper.style.width === "230px") {
+                groceryFlyoutBtn.href = '#';
+                groceryFlyout.style.width = '230px';
+            }
+        });
+        backBtn.addEventListener('click', () => {
+            groceryFlyout.style.width = '0px';
+        });
+        document.querySelector('.searchbtn').addEventListener('click', () => {
+                this.togglebtn();
+                inputSearch.focus();
+            })
+            //END OF SIDE NAV MENU
+    </script>
+</body>
+
+</html>

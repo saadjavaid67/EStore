@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tiger Mart</title>
+    <!-- STYLE SHEETS -->
+    <link rel="stylesheet" media=" screen and (min-width: 991px)" href="/css/main.css">
+    <link rel="stylesheet" media=" screen and (max-width: 990px)" href="/css/small-devices.css">
+    <!-- Awesome Font Icons CDN -->
+    <script src="https://kit.fontawesome.com/e96d07a92d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- INVOICE -->
+    <div class="invoice">
+        <header class="invoice-header">
+            <div class="invoice-logo-container">
+                the tiger mart
+            </div>
+        </header>
+        <div class="invoice-content">
+            <span class="invoice-heading">INVOICE</span>
+            <span class="invoice-date"></span>
+        </div>
+        <table class="table-invoice">
+            <thead>
+                <tr>
+                    <th>Item Id</th>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th class="invoice-price">Price</th>
+                </tr>
+            </thead>
+            <tbody class="invoice-items">
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td>TOTAL:</td>
+                    <td class="align-right">RS: <span class="invoice-total"></span></td>
+                </tr>
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td>Discounts:</td>
+                    <td class="align-right">0.00</td>
+                </tr>
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td>Paid:</td>
+                    <td class="align-right">0.00</td>
+                </tr>
+                <tr>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td class="no-border"></td>
+                    <td>Amount Due:</td>
+                    <td class="align-right">RS: <span class="amount-due"></span></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- CONTINUE TO CHECKOUT BUTTON -->
+    <div class="continue-checkout-container">
+        <button class="continue-to-checkout cart-big-btn">Continue To Checkout</button>
+    </div>
+    <!-- END OF CONTINUE TO CHECKOUT BUTTON -->
+    <!-- END OF INVOICE -->
+    <!-- CHECKOUT -->
+    <div id="checkout" class="checkout-form-container">
+        <h1>CHECKOUT</h1>
+        <div class="row">
+            <div class="col-75">
+                <div class="form-container">
+                    <form action="mail-handler.php" method="post" onsubmit="return validateForm();" name="form">
+                        <div class="row">
+                            <div class="form-name-cont row">
+                                <div class="name-cont">
+                                    <label for="fname"><i class="fa fa-user"></i> First Name</label>
+                                    <input type="text" class="form-name" id="fname" name="fname" placeholder="Enter Your First Name.." value=""></div>
+                                <div class="name-cont">
+                                    <label for="lname"><i class="fa fa-user"></i> Last Name</label>
+                                    <input type="text" class="form-name" id="lname" name="lname" placeholder="Enter Your Last Name.."></div>
+                            </div>
+                            <div class="col-50">
+
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" id="email" name="email" placeholder="xyz@example.com">
+                                <label for="phone"><i class="fa fa-phone"></i> Phone Number</label>
+                                <input type="tel" id="number" name="number" placeholder="03xx-xxxxxxx">
+                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                                <label for="city"><i class="fa fa-institution"></i> City</label>
+                                <input type="text" id="city" name="city" placeholder="Islamabad">
+                                <label for="country">Country</label></span>
+                                <select class="form-selector" id="country" name="country" class="form-control">
+                                        <option value="pakistan">Pakistan</option>
+                                        </select>
+                                <div class="row">
+                                    <div class="col-50">
+                                        <label for="state">State</label>
+                                        <select class="form-selector" id="state" name="state" class="form-control">
+                                                <option value="punjab">Punjab</option>
+                                                </select>
+                                    </div>
+                                    <div class="col-50">
+                                        <label for="zip">Postal Code</label>
+                                        <input type="text" id="zip" name="zip" placeholder="40100">
+                                        <input type="hidden" id="hidden" name="hidden" value="Something went wrong. Your invoice is not Generated. Kindly Try Again. We are Sorry for Inconvenience.">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="g-recaptcha" id="g-recaptcha" style="margin: 6px 17px;" data-sitekey="6LeouekUAAAAAE8D4o_C1SgdIXX3fWAewJAC0m_D"></div>
+                        <label>
+                            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                        </label>
+                        <input type="hidden" id="captchahidden" value="">
+                        <input type="submit" name="submit" value="PURCHASE" class="btn-checkout">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF CHECKOUT -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
+    <script src="/js/invoice.js"></script>
+    <script>
+        const invoiceDOM = document.querySelector('.table-invoice');
+        const hiddenInput = document.querySelector('#hidden');
+        document.addEventListener("DOMContentLoaded", () => {
+            hiddenInput.value = invoiceDOM.outerHTML;
+        });
+        const captchahidden = document.querySelector('#captchahidden');
+
+        var onloadCallback = function() {
+            grecaptcha.render('g-recaptcha', {
+                'sitekey': '6LeouekUAAAAAE8D4o_C1SgdIXX3fWAewJAC0m_D',
+                'callback': verifyCallback,
+                'theme': 'dark'
+            });
+        };
+        var verifyCallback = function setValueToCaptcha() {
+            captchahidden.value = 'true';
+        }
+    </script>
+    <script src="/js/formvalidation.js"></script>
+    <script src="/js/variables.js"></script>
+
+    <!-- ALL SCRIPTS HERE -->
+    <script src="/js/urlparam.js"></script>
+</body>
+
+</html>
